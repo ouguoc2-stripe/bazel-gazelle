@@ -127,8 +127,7 @@ func (gl *goLang) GenerateRules(args language.GenerateArgs) language.GenerateRes
 		slashPath := filepath.ToSlash(c.RepoRoot)
 		segments := strings.Split(slashPath, "/")
 		repoName := segments[len(segments)-1]
-		previousSegment := segments[len(segments)-2]
-		if previousSegment == "external" {
+		if len(segments) > 1 && segments[len(segments)-2] == "external" {
 			srcdir = path.Join("external", repoName, srcdir)
 		} else {
 			srcdir = path.Join("..", repoName, srcdir)
